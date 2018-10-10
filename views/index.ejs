@@ -1,0 +1,45 @@
+<head>
+	<% include head.ejs %>
+  </head>
+  <body>
+  
+	<% include header.ejs %>
+<table width='80%' border=0>
+ 
+	<tr style='text-align:left; background-color:#CCC'>
+		<th>id</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Date of Birth</th>
+		<th>Email</th>
+		<th>Username</th>
+		<th>User Date Added</th>
+		<th>Action</th>
+	</tr>
+
+	<% if (data) { %>
+	<% data.forEach(function(user){ %>
+		<tr>
+			<td><%= user.id %></td>
+			<td><%= user.first_name %></td>
+			<td><%= user.last_name %></td>
+			<td><%= user.date_of_birth %></td>
+			<td><%= user.email %></td>
+			<td><%= user.username %></td>
+			<td><%= user.user_created_date %></td>
+			<td>
+				<div style="float:left">
+					<a name="id" value="<%= user.id %>"  href='/edit/<%= user.id %>'>Edit</a> &nbsp;                            
+					<form method="delete" action="/delete/<%= user.id %>" style="float:right">
+						<input type="submit" value="Delete" onClick="return confirm('Are you sure you want to delete?')" />
+		
+					</form>
+				</div>
+			</td>
+		</tr>
+	<% }) %>
+	<% } %>
+  
+  </table>
+  
+  </body>
